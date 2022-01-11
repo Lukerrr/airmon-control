@@ -1,0 +1,538 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "MinSizeRel/AirMonitor.exe"
+		},
+		{
+			"path" : "MinSizeRel/AirMonitor.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"qt5_use_modules",
+			"add_compile_options",
+			"set_property",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"C:/Qt/Qt5.12.10/5.12.10/msvc2017/lib/cmake/Qt5Core/Qt5CoreMacros.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 66,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 68,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 388,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 388,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 388,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 388,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 9,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 390,
+				"parent" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 390,
+				"parent" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 390,
+				"parent" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 390,
+				"parent" : 2
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 25,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 37,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 389,
+				"parent" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 389,
+				"parent" : 2
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc -pthread /MD /O1 /Ob1 /DNDEBUG"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "-DDEBUG_BUILD"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-D_CRT_SECURE_NO_WARNINGS"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 9,
+					"define" : "QT_CORE_LIB"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "QT_GUI_LIB"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "QT_LOCATION_LIB"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "QT_NETWORK_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_NO_DEBUG"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "QT_POSITIONINGQUICK_LIB"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "QT_POSITIONING_LIB"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "QT_QML_LIB"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "QT_QUICKWIDGETS_LIB"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "QT_QUICK_LIB"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "QT_WIDGETS_LIB"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 13,
+					"path" : "C:/Projects/airmon-control/inc"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Projects/airmon-control/inc/core"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Projects/airmon-control/inc/core/messages"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Projects/airmon-control/inc/gui"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Projects/airmon-control/inc/gui/generated"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Projects/airmon-control/inc/helpers"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Projects/airmon-control/inc/helpers/math"
+				},
+				{
+					"backtrace" : 13,
+					"path" : "C:/Projects/airmon-control/inc/msgs"
+				},
+				{
+					"backtrace" : 14,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include"
+				},
+				{
+					"backtrace" : 14,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtCore"
+				},
+				{
+					"backtrace" : 14,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/./mkspecs/win32-msvc"
+				},
+				{
+					"backtrace" : 14,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtWidgets"
+				},
+				{
+					"backtrace" : 14,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtGui"
+				},
+				{
+					"backtrace" : 14,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtANGLE"
+				},
+				{
+					"backtrace" : 15,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtLocation"
+				},
+				{
+					"backtrace" : 15,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtPositioningQuick"
+				},
+				{
+					"backtrace" : 15,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtPositioning"
+				},
+				{
+					"backtrace" : 15,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtQuick"
+				},
+				{
+					"backtrace" : 15,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtQml"
+				},
+				{
+					"backtrace" : 15,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtNetwork"
+				},
+				{
+					"backtrace" : 16,
+					"isSystem" : true,
+					"path" : "C:/Qt/Qt5.12.10/5.12.10/msvc2017/include/QtQuickWidgets"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "AirMonitor::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc -pthread /MD /O1 /Ob1 /DNDEBUG",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "/machine:X86 /INCREMENTAL:NO /subsystem:console",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5Location.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5QuickWidgets.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5PositioningQuick.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5Positioning.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5Widgets.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5Quick.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5Gui.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5Qml.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5Network.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\lib\\Qt5Core.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "AirMonitor",
+	"nameOnDisk" : "AirMonitor.exe",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				14,
+				15
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				16
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/core/Core.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/core/Configurator.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/core/Communicator.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/gui/UserInterface.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/gui/PlannerWidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/helpers/TimeUtils.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/helpers/Log.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/helpers/Crc32.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/helpers/math/MathUtils.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/helpers/math/LinePath2D.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/inc/gui/moc_UserInterface.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/inc/gui/moc_PlannerWidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/qrc_qml.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/22fbdd4d6f585a67f636292396a659d6/moc_UserInterface.cpp.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/22fbdd4d6f585a67f636292396a659d6/moc_PlannerWidget.cpp.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"path" : "qrc/qml.qrc",
+			"sourceGroupIndex" : 2
+		}
+	],
+	"type" : "EXECUTABLE"
+}

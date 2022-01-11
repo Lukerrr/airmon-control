@@ -6,6 +6,7 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 ## Use debug logic
 add_compile_options(-DDEBUG_BUILD)
+add_compile_options(-D_CRT_SECURE_NO_WARNINGS)
 
 ## Executable name
 set(TARGET AirMonitor)
@@ -43,7 +44,6 @@ set(SOURCE_EXE
     ${SRC}/core/Core.cpp
     ${SRC}/core/Configurator.cpp
     ${SRC}/core/Communicator.cpp
-    ${SRC}/core/DownloadManager.cpp
     ${SRC}/gui/UserInterface.cpp
     ${SRC}/gui/PlannerWidget.cpp
     ${SRC}/helpers/TimeUtils.cpp

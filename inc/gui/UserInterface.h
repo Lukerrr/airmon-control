@@ -25,12 +25,8 @@ private:
     void OnSendPathBtnClicked();
     void OnAdjustHeightBtnClicked();
     void OnAdjustToleranceBtnClicked();
-    void OnAdjustDensityBtnClicked();
-    void OnGetCloudBtnClicked();
 
     void OnPathSpacingChanged(double val);
-
-    QString FormatBytes(uint32_t bytesNum);
 
     Ui::UserInterface m_ui;
     QPlannerWidget m_plannerWidget;

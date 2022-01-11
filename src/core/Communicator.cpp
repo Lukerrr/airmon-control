@@ -20,8 +20,6 @@ size_t GetRspDataSize(ERspType type)
     switch(type)
     {
     case RSP_DRONE_STATE:       return sizeof(SRspDroneState);
-    case RSP_CLOUD_CHUNK:       return sizeof(SRspCloudChunk);
-    case RSP_CLOUD_END:         return sizeof(SRspCloudEnd);
     default:
         return 0;
     }
@@ -200,26 +198,6 @@ bool CCommunicator::Update()
             }
             break;
         }
-        case RSP_CLOUD_CHUNK:
-        {
-            // Save point cloud chunk
-            SPointCloud cloud = *(SPointCloud*)m_curPacket.payload;
-            CDownloadManager* pDownloadManager = g_pCore->GetDownloadManager();
-            if(pDownloadManager)
-            {
-                pDownloadManager->AppendChunk(cloud);
-                g_pCore->UpdateCloudPercent();
-            }
-            break;
-        }
-        case RSP_CLOUD_END:
-        {
-            // Stop saving cloud
-            g_pCore->StopDownloadManager();
-            break;
-        }
-        default:
-            break;
         }
         m_curPacket = SRawPacket();
     }

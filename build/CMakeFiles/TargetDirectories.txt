@@ -1,0 +1,3 @@
+C:/Projects/airmon-control/build/CMakeFiles/AirMonitor.dir
+C:/Projects/airmon-control/build/CMakeFiles/ALL_BUILD.dir
+C:/Projects/airmon-control/build/CMakeFiles/ZERO_CHECK.dir

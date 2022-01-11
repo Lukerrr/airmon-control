@@ -70,19 +70,6 @@
       <string>Rotation: [0.0, 0.0, 0.0]</string>
      </property>
     </widget>
-    <widget class="QLabel" name="droneStateCloud">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>70</y>
-       <width>251</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Cloud size: 0 (0 B)</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="chargeLabel">
      <property name="enabled">
       <bool>true</bool>
@@ -337,95 +324,6 @@
     </property>
     <property name="value">
      <double>5.000000000000000</double>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="getCloudBtn">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>40</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Get cloud</string>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="cloudDownloadBar">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>70</y>
-      <width>89</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
-    </property>
-    <property name="value">
-     <number>0</number>
-    </property>
-    <property name="textVisible">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="densitySpinBox">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>141</y>
-      <width>61</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <double>0.100000000000000</double>
-    </property>
-    <property name="maximum">
-     <double>100.000000000000000</double>
-    </property>
-    <property name="singleStep">
-     <double>0.010000000000000</double>
-    </property>
-    <property name="value">
-     <double>4.000000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="densityLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>142</y>
-      <width>61</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Density:</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="adjustDensityBtn">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>140</y>
-      <width>89</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Adjust</string>
     </property>
    </widget>
   </widget>

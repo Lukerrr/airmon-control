@@ -1,10 +1,10 @@
 #include "Core.h"
-#include "Log.h"
-#include "Crc32.h"
+
 #include "Communicator.h"
 #include "Configurator.h"
-
+#include "Crc32.h"
 #include "InterfaceEvents.h"
+#include "Log.h"
 
 #include <chrono>
 #include <thread>
@@ -58,7 +58,6 @@ void CCore::Run()
             if(!bConnected)
             {
                 QCoreApplication::postEvent(m_pUi, new QDroneStateEvent(SDroneState()));
-                StopDownloadManager();
             }
             bWasConnected = bConnected;
         }
@@ -77,30 +76,6 @@ void CCore::Run()
 void CCore::Invalidate()
 {
     m_bValid.store(false);
-}
-
-CDownloadManager* CCore::GetDownloadManager()
-{
-    return m_pDownloadManager;
-}
-
-void CCore::UpdateCloudPercent()
-{
-    if(m_pDownloadManager)
-    {
-        int percent = m_pDownloadManager->GetPercent();
-        QCoreApplication::postEvent(m_pUi, new QGetCloudPercentEvent(percent));
-    }
-}
-
-void CCore::StopDownloadManager()
-{
-    if(m_pDownloadManager)
-    {
-        delete m_pDownloadManager;
-        m_pDownloadManager = NULL;
-        QCoreApplication::postEvent(m_pUi, new QGetCloudStopEvent());
-    }
 }
 
 void CCore::SetMissionPath(CLinePath2D path)
@@ -194,43 +169,5 @@ void CCore::RequestSendTolerance(float tolerance)
     SCmdTolerance cmd;
     cmd.tolerance = tolerance;
     g_pComm->Send(cmd);
-    m_mutex.unlock();
-}
-
-void CCore::RequestSendDensity(float density)
-{
-    m_mutex.lock();
-    SCmdDensity cmd;
-    cmd.density = density;
-    g_pComm->Send(cmd);
-    m_mutex.unlock();
-}
-
-void CCore::RequestGetCloud(string fileName)
-{
-    m_mutex.lock();
-
-    if(m_pDownloadManager)
-    {
-        // Already downloading
-        return;
-    }
-
-    SDroneState state = g_pComm->GetState();
-    if(state.cloudSize > 0)
-    {
-        m_pDownloadManager = new CDownloadManager(state.cloudSize, fileName);
-        SCmdGetCloud cmd;
-        g_pComm->Send(cmd);
-
-        QCoreApplication::postEvent(m_pUi, new QGetCloudStartEvent());
-    }
-    m_mutex.unlock();
-}
-
-void CCore::RequestStopGetCloud()
-{
-    m_mutex.lock();
-    StopDownloadManager();
     m_mutex.unlock();
 }
