@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.8)
-project(eagle_x)
+project(air_monitor)
 
 SET(CMAKE_PREFIX_PATH "C:\\Qt\\Qt5.12.10\\5.12.10\\msvc2017\\")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
@@ -8,7 +8,7 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 add_compile_options(-DDEBUG_BUILD)
 
 ## Executable name
-set(TARGET EagleX)
+set(TARGET AirMonitor)
 
 ## Qt5 required packages
 find_package(Qt5Core REQUIRED)

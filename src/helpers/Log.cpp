@@ -8,7 +8,7 @@
 #define LOG_FILE_DIR    "logs/"
 #define LOG_FILE_EXT    "txt"
 
-#define LOG_FILE_NAME   "EagleLog"
+#define LOG_FILE_NAME   "AirmonLog"
 
 using namespace std;
 
