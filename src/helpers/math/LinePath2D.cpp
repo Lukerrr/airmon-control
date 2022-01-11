@@ -174,7 +174,7 @@ vector<Line2D> CLinePath2D::GetLines()
     size_t pointsNum = GetSize();
     if(pointsNum > 1)
     {
-        for(int i = 1; i < pointsNum; ++i)
+        for(size_t i = 1; i < pointsNum; ++i)
         {
             lines.push_back(Line2D(m_points[i-1], m_points[i]));
         }
