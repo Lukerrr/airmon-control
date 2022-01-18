@@ -50,6 +50,12 @@ bool CConfigurator::UpdateConfig()
         m_cfg.coreRate = atof(entry.c_str());
     }
 
+    entry = entries["heartbeat-rate-hz"];
+    if(entry.size() > 0)
+    {
+        m_cfg.heartbeatRate = atof(entry.c_str());
+    }
+
     entry = entries["drone-ip"];
     if(entry.size() > 0)
     {
@@ -60,12 +66,6 @@ bool CConfigurator::UpdateConfig()
     if(entry.size() > 0)
     {
         m_cfg.dronePort = atoi(entry.c_str());
-    }
-
-    entry = entries["auto-disconnect-time"];
-    if(entry.size() > 0)
-    {
-        m_cfg.autoDisconnectTime = atoi(entry.c_str());
     }
 
     return true;

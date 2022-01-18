@@ -202,16 +202,14 @@ bool CCommunicator::Update()
         m_curPacket = SRawPacket();
     }
 
-    if(Millis() - m_lastDataStamp > g_pConf->GetConfig().autoDisconnectTime)
+    if(Millis() - m_lastDataStamp > (1000.0 / g_pConf->GetConfig().heartbeatRate))
     {
-        CLog::Log(LOG_INFO, "CCommunicator: disconnecting on timeout...");
-        Reset();
-        return false;
-    }
+        // Send heartbeat too keep connection alive
+        SCmdHeartbeat hb;
+        Send(hb);
 
-    // Send heartbeat if update is ok
-    SCmdHeartbeat hb;
-    Send(hb);
+        m_lastDataStamp = Millis();
+    }
 
     return true;
 }
