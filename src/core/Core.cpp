@@ -58,6 +58,7 @@ void CCore::Run()
             if(!bConnected)
             {
                 QCoreApplication::postEvent(m_pUi, new QDroneStateEvent(SDroneState()));
+                StopDownloadManager();
             }
             bWasConnected = bConnected;
         }
@@ -76,6 +77,30 @@ void CCore::Run()
 void CCore::Invalidate()
 {
     m_bValid.store(false);
+}
+
+CDownloadManager* CCore::GetDownloadManager()
+{
+    return m_pDownloadManager;
+}
+
+void CCore::UpdateAirSensPercent()
+{
+    if(m_pDownloadManager)
+    {
+        int percent = m_pDownloadManager->GetPercent();
+        QCoreApplication::postEvent(m_pUi, new QGetAirSensPercentEvent(percent));
+    }
+}
+
+void CCore::StopDownloadManager()
+{
+    if(m_pDownloadManager)
+    {
+        delete m_pDownloadManager;
+        m_pDownloadManager = NULL;
+        QCoreApplication::postEvent(m_pUi, new QGetAirSensStopEvent());
+    }
 }
 
 void CCore::SetMissionPath(CLinePath2D path)
@@ -169,5 +194,34 @@ void CCore::RequestSendTolerance(float tolerance)
     SCmdTolerance cmd;
     cmd.tolerance = tolerance;
     g_pComm->Send(cmd);
+    m_mutex.unlock();
+}
+
+void CCore::RequestGetAirSens(string fileName)
+{
+    m_mutex.lock();
+
+    if(m_pDownloadManager)
+    {
+        // Already downloading
+        return;
+    }
+
+    SDroneState state = g_pComm->GetState();
+    if(state.airSensDataCount > 0)
+    {
+        m_pDownloadManager = new CDownloadManager(state.airSensDataCount, fileName);
+        SCmdGetAirSens cmd;
+        g_pComm->Send(cmd);
+
+        QCoreApplication::postEvent(m_pUi, new QGetAirSensStartEvent());
+    }
+    m_mutex.unlock();
+}
+
+void CCore::RequestStopGetAirSens()
+{
+    m_mutex.lock();
+    StopDownloadManager();
     m_mutex.unlock();
 }

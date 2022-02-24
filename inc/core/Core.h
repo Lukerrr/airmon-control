@@ -3,6 +3,7 @@
 #include "Communicator.h"
 #include "Singleton.h"
 #include "UserInterface.h"
+#include "DownloadManager.h"
 
 #include <atomic>
 #include <mutex>
@@ -21,6 +22,10 @@ public:
 
     void Invalidate();
 
+    CDownloadManager* GetDownloadManager();
+    void UpdateAirSensPercent();
+    void StopDownloadManager();
+
     void SetMissionPath(CLinePath2D path);
 
     void RequestArmDisarm();
@@ -28,9 +33,12 @@ public:
     void RequestSendMission();
     void RequestSendHeight(float height);
     void RequestSendTolerance(float tolerance);
+    void RequestGetAirSens(string fileName);
+    void RequestStopGetAirSens();
 
 private:
     QUserInterface* m_pUi = NULL;
+    CDownloadManager* m_pDownloadManager = NULL;
 
     uint64_t m_delayMs = 0;
 

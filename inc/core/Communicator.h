@@ -49,7 +49,7 @@ private:
 
     int m_gsSocket = -1;
     bool m_bConnected = false;
-    TTime m_lastDataStamp = -1;
+    TTime m_lastHbStamp = -1;
 
     SRawPacket m_curPacket;
 };

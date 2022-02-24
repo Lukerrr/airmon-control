@@ -1,0 +1,10 @@
+^C:\PROJECTS\AIRMON-CONTROL\BUILD\CMAKEFILES\BADF0C20A1967F657D3D1623A7FE64A7\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Projects/airmon-control -BC:/Projects/airmon-control/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Projects/airmon-control/build/air_monitor.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

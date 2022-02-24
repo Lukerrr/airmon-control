@@ -12,6 +12,9 @@ enum EInterfaceEvent
     UI_EVT_DRONE_STATE,
     UI_EVT_MISSION_CHANGED,
     UI_EVT_MISSION_STARTED,
+    UI_EVT_GET_AIR_SENS_START,
+    UI_EVT_GET_AIR_SENS_PERCENT,
+    UI_EVT_GET_AIR_SENS_STOP,
 };
 
 class QConnectionEvent : public QEvent
@@ -45,4 +48,26 @@ class QMissionStartedEvent : public QEvent
 public:
     explicit QMissionStartedEvent()
         : QEvent((QEvent::Type)EInterfaceEvent::UI_EVT_MISSION_STARTED) {};
+};
+
+class QGetAirSensStartEvent : public QEvent
+{
+public:
+    explicit QGetAirSensStartEvent()
+        : QEvent((QEvent::Type)EInterfaceEvent::UI_EVT_GET_AIR_SENS_START) {};
+};
+
+class QGetAirSensPercentEvent : public QEvent
+{
+public:
+    explicit QGetAirSensPercentEvent(int percent)
+        : QEvent((QEvent::Type)EInterfaceEvent::UI_EVT_GET_AIR_SENS_PERCENT), m_percent(percent) {};
+    int m_percent;
+};
+
+class QGetAirSensStopEvent : public QEvent
+{
+public:
+    explicit QGetAirSensStopEvent()
+        : QEvent((QEvent::Type)EInterfaceEvent::UI_EVT_GET_AIR_SENS_STOP) {};
 };

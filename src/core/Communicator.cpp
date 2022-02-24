@@ -20,6 +20,8 @@ size_t GetRspDataSize(ERspType type)
     switch(type)
     {
     case RSP_DRONE_STATE:       return sizeof(SRspDroneState);
+    case RSP_AIR_SENS_CHUNK:    return sizeof(SRspAirSensChunk);
+    case RSP_AIR_SENS_END:      return sizeof(SRspAirSensEnd);
     default:
         return 0;
     }
@@ -94,11 +96,6 @@ bool CCommunicator::TryConnect()
     inet_pton(AF_INET, cfg.droneIp.c_str(), &hint.sin_addr);
 
     m_bConnected = connect(m_gsSocket, (sockaddr*)&hint, sizeof(hint)) != -1;
-
-    if(m_bConnected)
-    {
-        m_lastDataStamp = Millis();
-    }
 
     return m_bConnected;
 }
@@ -185,7 +182,6 @@ bool CCommunicator::Update()
     // Read all received packets
     while(ConstructPacket())
     {
-        m_lastDataStamp = Millis();
         switch(m_curPacket.type)
         {
         case RSP_DRONE_STATE:
@@ -198,17 +194,35 @@ bool CCommunicator::Update()
             }
             break;
         }
+        case RSP_AIR_SENS_CHUNK:
+        {
+            // Save air sens data chunk
+            SAirSens airSens = *(SAirSens*)m_curPacket.payload;
+            CDownloadManager* pDownloadManager = g_pCore->GetDownloadManager();
+            if(pDownloadManager)
+            {
+                pDownloadManager->AppendChunk(airSens);
+                g_pCore->UpdateAirSensPercent();
+            }
+            break;
+        }
+        case RSP_AIR_SENS_END:
+        {
+            // Stop saving cloud
+            g_pCore->StopDownloadManager();
+            break;
+        }
         }
         m_curPacket = SRawPacket();
     }
 
-    if(Millis() - m_lastDataStamp > (1000.0 / g_pConf->GetConfig().heartbeatRate))
+    if(Millis() - m_lastHbStamp > (1000.0 / g_pConf->GetConfig().heartbeatRate))
     {
         // Send heartbeat too keep connection alive
         SCmdHeartbeat hb;
         Send(hb);
 
-        m_lastDataStamp = Millis();
+        m_lastHbStamp = Millis();
     }
 
     return true;

@@ -1,0 +1,48 @@
+^C:\PROJECTS\AIRMON-CONTROL\BUILD\CMAKEFILES\22FBDD4D6F585A67F636292396A659D6\MOC_USERINTERFACE.CPP.RULE
+setlocal
+cd C:\Projects\airmon-control\build\inc\gui
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\Qt5.12.10\5.12.10\msvc2017\bin\moc.exe @C:/Projects/airmon-control/build/inc/gui/moc_UserInterface.cpp_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\PROJECTS\AIRMON-CONTROL\BUILD\CMAKEFILES\22FBDD4D6F585A67F636292396A659D6\MOC_PLANNERWIDGET.CPP.RULE
+setlocal
+cd C:\Projects\airmon-control\build\inc\gui
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+C:\Qt\Qt5.12.10\5.12.10\msvc2017\bin\moc.exe @C:/Projects/airmon-control/build/inc/gui/moc_PlannerWidget.cpp_parameters
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\PROJECTS\AIRMON-CONTROL\QRC\QML.QRC
+setlocal
+C:\Qt\Qt5.12.10\5.12.10\msvc2017\bin\rcc.exe --name qml --output C:/Projects/airmon-control/build/qrc_qml.cpp C:/Projects/airmon-control/qrc/qml.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\PROJECTS\AIRMON-CONTROL\CMAKELISTS.TXT
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Projects/airmon-control -BC:/Projects/airmon-control/build --check-stamp-file C:/Projects/airmon-control/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
