@@ -29,6 +29,9 @@ CDownloadManager::~CDownloadManager()
         return;
     }
 
+    // CSV header
+    file << "lat,lon,temp,humidity,co,co2,nh3,no2,tvoc" << "\n";
+
     for(SAirSens::AirSensData pt : m_data)
     {
         file
