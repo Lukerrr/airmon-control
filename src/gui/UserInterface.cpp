@@ -18,6 +18,7 @@ QUserInterface::QUserInterface(QWidget* parent /*= Q_NULLPTR*/)
     connect(m_ui.sendPathBtn, &QPushButton::clicked, this, &QUserInterface::OnSendPathBtnClicked);
     connect(m_ui.adjustHeightBtn, &QPushButton::clicked, this, &QUserInterface::OnAdjustHeightBtnClicked);
     connect(m_ui.adjustToleranceBtn, &QPushButton::clicked, this, &QUserInterface::OnAdjustToleranceBtnClicked);
+    connect(m_ui.getAirSensBtn, &QPushButton::clicked, this, &QUserInterface::OnGetAirSensBtnClicked);
 
     connect(m_ui.pathSpacingSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &QUserInterface::OnPathSpacingChanged);
 
@@ -57,13 +58,19 @@ bool QUserInterface::event(QEvent* event)
             m_bNeedsUpdateMissionParams = false;
         }
         
-        QString posStr, rotStr;
+        QString posStr, rotStr, dataStr;
         posStr.sprintf("Position: [%.2f, %.2f, %.2f]", state.x, state.y, state.z);
         rotStr.sprintf("Rotation: [%.2f, %.2f, %.2f]", state.roll, state.pitch, state.yaw);
 
+        dataStr.sprintf("Air data size: %d (%s)",
+            state.airSensDataCount,
+            FormatBytes(sizeof(SAirSens::AirSensData) * state.airSensDataCount).toStdString().c_str());
+
         m_ui.droneStatePos->setText(posStr);
         m_ui.droneStateRot->setText(rotStr);
+        m_ui.droneStateData->setText(dataStr);
 
+        m_ui.getAirSensBtn->setEnabled(m_ui.airSensDownloadBar->isEnabled() || state.airSensDataCount > 0);
         m_ui.chargeBar->setValue(state.charge * 100.f);
 
         m_ui.armBtn->setText(state.bArmed ? "Disarm" : "Arm");
@@ -114,6 +121,26 @@ bool QUserInterface::event(QEvent* event)
     case UI_EVT_MISSION_STARTED:
     {
         m_plannerWidget.SetMovementPath(QGeoPath());
+        break;
+    }
+    case UI_EVT_GET_AIR_SENS_START:
+    {
+        m_ui.getAirSensBtn->setText("Cancel");
+        m_ui.airSensDownloadBar->setValue(0);
+        m_ui.airSensDownloadBar->setEnabled(true);
+        break;
+    }
+    case UI_EVT_GET_AIR_SENS_PERCENT:
+    {
+        auto pDataPercentEvent = static_cast<QGetAirSensPercentEvent*>(event);
+        m_ui.airSensDownloadBar->setValue(pDataPercentEvent->m_percent);
+        break;
+    }
+    case UI_EVT_GET_AIR_SENS_STOP:
+    {
+        m_ui.getAirSensBtn->setText("Get data");
+        m_ui.airSensDownloadBar->setValue(0);
+        m_ui.airSensDownloadBar->setEnabled(false);
         break;
     }
     default:
@@ -179,6 +206,27 @@ void QUserInterface::OnAdjustToleranceBtnClicked()
     g_pCore->RequestSendTolerance(m_ui.toleranceSpinBox->value());
 }
 
+void QUserInterface::OnGetAirSensBtnClicked()
+{
+    if(!m_ui.airSensDownloadBar->isEnabled())
+    {
+        QString filename = QFileDialog::getSaveFileName( 
+            this, 
+            tr("Save data as..."), 
+            QDir::currentPath(), 
+            tr("CSV files (*.csv);;All files (*.*)") );
+
+        if(!filename.isNull())
+        {
+            g_pCore->RequestGetAirSens(filename.toStdString());
+        }
+    }
+    else
+    {
+        g_pCore->RequestStopGetAirSens();
+    }
+}
+
 void QUserInterface::OnPlannerBtnClicked()
 {
     if(m_plannerWidget.isVisible())
@@ -194,4 +242,28 @@ void QUserInterface::OnPlannerBtnClicked()
 void QUserInterface::OnPathSpacingChanged(double val)
 {
     m_plannerWidget.SetMissionSpacing(m_ui.pathSpacingSpinBox->value());
+}
+
+QString QUserInterface::FormatBytes(uint32_t bytesNum)
+{
+    QString unit("bytes");
+
+    if(bytesNum < 1024)
+    {
+        // No conversion
+        return QString().setNum(bytesNum) + " " + unit;
+    }
+
+    QStringList list;
+    list << "KB" << "MB" << "GB" << "TB";
+    QStringListIterator i(list);
+
+    float num = bytesNum;
+    while(num >= 1024.f && i.hasNext())
+    {
+        unit = i.next();
+        num /= 1024.f;
+    }
+
+    return QString().setNum(num, 'f', 2) + " " + unit;
 }
