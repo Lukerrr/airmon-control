@@ -55,37 +55,38 @@ void CLog::LogInternal(ELogLevel level, const char* szInfo)
 {
     s_logMutex.lock();
 
-    FILE* pLogFile = fopen(s_log.m_filePath.c_str(), "a");
-
-    if (pLogFile != NULL)
+    const char* levelPrefix = "";
+    switch (level)
     {
-        const char* levelPrefix = "";
-        switch (level)
-        {
-        case LOG_INFO:
-            levelPrefix = "INFO";
-            break;
-        case LOG_WARNING:
-            levelPrefix = "WARNING";
-            break;
-        case LOG_ERROR:
-            levelPrefix = "ERROR";
-            break;
-        default:
-            break;
-        }
+    case LOG_INFO:
+        levelPrefix = "INFO";
+        break;
+    case LOG_WARNING:
+        levelPrefix = "WARNING";
+        break;
+    case LOG_ERROR:
+        levelPrefix = "ERROR";
+        break;
+    default:
+        break;
+    }
 
-        ostringstream data;
-        data << "[" << GetTimestamp() << "] " << levelPrefix << ": " << szInfo << "\n";
+    ostringstream data;
+    data << "[" << GetTimestamp() << "] " << levelPrefix << ": " << szInfo << "\n";
 
-        string dataStr = data.str().c_str();
-
-        fwrite(dataStr.c_str(), sizeof(char), dataStr.size(), pLogFile);
-        fclose(pLogFile);
+    string dataStr = data.str();
 
 #ifdef DEBUG_BUILD
         printf(dataStr.c_str());
 #endif
+
+    FILE* pLogFile = fopen(s_log.m_filePath.c_str(), "a");
+
+    if (pLogFile != NULL)
+    {
+        fwrite(dataStr.c_str(), sizeof(char), dataStr.size(), pLogFile);
+        fclose(pLogFile);
     }
+
     s_logMutex.unlock();
 }

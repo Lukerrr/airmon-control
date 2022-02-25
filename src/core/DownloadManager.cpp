@@ -32,14 +32,14 @@ CDownloadManager::~CDownloadManager()
     for(SAirSens::AirSensData pt : m_data)
     {
         file
-        << pt.lat << ";"
-        << pt.lon << ";"
-        << pt.temp << ";"
-        << pt.hum << ";"
-        << pt.co << ";"
-        << pt.co2 << ";"
-        << pt.nh3 << ";"
-        << pt.no2 << ";"
+        << pt.lat << ","
+        << pt.lon << ","
+        << pt.temp << ","
+        << pt.hum << ","
+        << pt.co << ","
+        << pt.co2 << ","
+        << pt.nh3 << ","
+        << pt.no2 << ","
         << pt.tvoc << "\n";
     }
 
