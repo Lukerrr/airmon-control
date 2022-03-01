@@ -62,7 +62,7 @@ public:
 
     void retranslateUi(QWidget *PlannerWidget)
     {
-        PlannerWidget->setWindowTitle(QApplication::translate("PlannerWidget", "EagleControl - Planner", nullptr));
+        PlannerWidget->setWindowTitle(QApplication::translate("PlannerWidget", "AirMonitor - Planner", nullptr));
         noGpsLabel->setText(QApplication::translate("PlannerWidget", "No GPS data", nullptr));
     } // retranslateUi
 
